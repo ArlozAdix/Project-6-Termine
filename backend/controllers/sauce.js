@@ -96,7 +96,7 @@ exports.createSauce = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id})
     .then(sauce => {
         // Conditions pour identifier la demande de la requete 
-        if (req.body.likes == 1) {
+        if (req.body.like == 1) {
             // Incremente le compteur
             sauce.likes++;
             // Ajoute l'user ID dans le tableau des users ayant like
@@ -104,22 +104,22 @@ exports.createSauce = (req, res, next) => {
             // Sauvegarde la sauce
             sauce.save();
         }
-        if (req.body.likes == -1) {
+        if (req.body.like == -1) {
             sauce.dislikes++;
             sauce.usersDisliked.push(req.body.userId);
             sauce.save();
         }
-        if (req.body.likes == 0) {
+        if (req.body.like == 0) {
             // Verifi si l'utilisateur a deja vote
-            if (sauce.usersLiked.indexOf(req.body.userId)) {
+            if (sauce.usersLiked.indexOf(req.body.userId) != -1) {
                 // decremente le compteur
                 sauce.likes--;
                 // Supprime l'user ID du tableau
-                sauce.usersLiked.splice(sauce.userLiked.indexOf(req.body.userId), 1);
+                sauce.usersLiked.splice(sauce.usersLiked.indexOf(req.body.userId), 1);
             }
-            if (sauce.usersDisliked.indexOf(req.body.userId)) {
+            if (sauce.usersDisliked.indexOf(req.body.userId) != -1) {
                 sauce.dislikes--;
-                sauce.usersDisliked.splice(sauce.userDisliked.indexOf(req.body.userId), 1);
+                sauce.usersDisliked.splice(sauce.usersDisliked.indexOf(req.body.userId), 1);
             }
             // Sauvegarde la sauce
             sauce.save();
