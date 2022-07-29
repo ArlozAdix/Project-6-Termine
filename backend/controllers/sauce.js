@@ -20,7 +20,9 @@ exports.createSauce = (req, res, next) => {
     const sauce = new Sauce({
         ...sauceObject,
         userId: req.auth.userId,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+        likes: 0,
+        dislikes: 0
     });
   
     sauce.save()
@@ -67,4 +69,35 @@ exports.createSauce = (req, res, next) => {
         .catch( error => {
             res.status(500).json({ error });
         });
+ };
+
+ exports.likeSauce = (req, res, next) => {
+    Sauce.findOne({ _id: req.params.id})
+    .then(sauce => {
+        if (req.body.likes == 1) {
+            sauce.likes++;
+            sauce.usersLiked.push(req.body.userId);
+            sauce.save();
+        }
+        if (req.body.likes == -1) {
+            sauce.dislikes++;
+            sauce.usersDisliked.push(req.body.userId);
+            sauce.save();
+        }
+        if (req.body.likes == 0) {
+            if (sauce.usersLiked.indexOf(req.body.userId)) {
+                sauce.likes--;
+                sauce.usersLiked.splice(sauce.userLiked.indexOf(req.body.userId), 1);
+            }
+            if (sauce.usersDisliked.indexOf(req.body.userId)) {
+                sauce.dislikes--;
+                sauce.usersDisliked.splice(sauce.userDisliked.indexOf(req.body.userId), 1);
+            }
+            sauce.save();
+        }
+        res.status(200).json({message: 'Changement like pris en compte'})
+    })
+    .catch( error => {
+        res.status(500).json({ error });
+    });
  };
