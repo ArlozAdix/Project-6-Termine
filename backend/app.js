@@ -18,6 +18,8 @@ const sauceRoutes = require('./routes/sauce');
 // Appel de l'application express
 const app = express();
 
+
+// Gestions des erreurs CORS
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
