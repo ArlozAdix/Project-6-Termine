@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,IAAI,AAAC,CACH,MAAM,CAAE,QAAQ,CAChB,SAAS,CAAE,KAAK,CACjB,AAED,AAAA,WAAW,AAAC,CACV,KAAK,CAAE,GAAG,CACV,OAAO,CAAE,KAAK,CACf,AAED,AAAA,eAAe,AAAC,CACd,OAAO,CAAE,IAAI,CACd,AAED,AAAA,aAAa,AAAC,CACZ,KAAK,CAAE,GAAG,CACV,WAAW,CAAE,KAAK,CAClB,gBAAgB,CAAE,KAAK,CACxB,AAED,AAAA,KAAK,CAAA,AAAA,IAAC,CAAK,MAAM,AAAX,CAAa,CACjB,OAAO,CAAE,IAAI,CACd",
+    "sources": [
+        "../../src/app/sauce-form/sauce-form.component.scss"
+    ],
+    "names": [],
+    "file": "sauce-form.component.min.css"
+}
