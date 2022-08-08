@@ -1,3 +1,11 @@
+/**
+ * http://https://github.com/ArlozAdix/project-6
+ *
+ * Readme at https://github.com/ArlozAdix/project-6/blob/master/README.md
+
+ * Original version: 1.0 Loic Beernaert ( loic.beernaert(at)gmail.com )
+ */
+
 // Importation package http & app.js
 const http = require('http');
 const app = require('./app');

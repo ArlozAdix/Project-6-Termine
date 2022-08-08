@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
     const name = file.originalname.split(' ').join('_');
     // Utilisations de la bibliotheque pour le definir dans le nom de fichier
     const extension = MIME_TYPES[file.mimetype];
-    // Renomme le fichier en ajoutant la date
+    // Renomme le fichier en ajoutant la date pour l'unicite
     callback(null, name + Date.now() + '.' + extension);
   }
 });
