@@ -97,7 +97,7 @@ exports.createSauce = (req, res, next) => {
     .then(sauce => {
         let user = req.body.userId
         // Conditions pour identifier la demande de la requete 
-        if (req.body.like == 1 && !sauce.usersLiked.user) {
+        if (req.body.like == 1 && !sauce.usersLiked.includes(user)) {
             // Incremente le compteur
             sauce.likes++;
             // Ajoute l'user ID dans le tableau des users ayant like
@@ -105,7 +105,7 @@ exports.createSauce = (req, res, next) => {
             // Sauvegarde la sauce
             sauce.save();
         }
-        if (req.body.like == -1 && !sauce.usersDisliked.user) {
+        if (req.body.like == -1 && !sauce.usersDisliked.includes(user)) {
             sauce.dislikes++;
             sauce.usersDisliked.push(req.body.userId);
             sauce.save();
